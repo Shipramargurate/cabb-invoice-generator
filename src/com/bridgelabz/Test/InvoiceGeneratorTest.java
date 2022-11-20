@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.bridgelabz.InvoiceGenerator;
+import com.bridgelabz.Ride;
 
 public class InvoiceGeneratorTest {
 
@@ -22,5 +23,13 @@ public class InvoiceGeneratorTest {
         int time = 1;          //time in minutes
         double fare = invoiceGenerator.calculateFare(distance, time); //Total fare calculations
         Assertions.assertEquals(5 , fare);                    //0.1*10 + 1*1
+    }
+
+    @Test
+    void givenMultipleRides_shouldReturnTotalFare() {
+        Ride[] rides = {new Ride(2.0 , 5),
+                new Ride(5.0 , 10)};
+       double fare = invoiceGenerator.calculateFare(rides);
+        Assertions.assertEquals(85, fare);
     }
 }
